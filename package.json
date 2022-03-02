@@ -1,0 +1,37 @@
+{
+  "name": "taulia",
+  "version": "1.0.0",
+  "description": "Password validator",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "react-dev": "webpack --config ./webpack.config.js -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahjohnston/Taulia.git"
+  },
+  "author": "Annie Johnston",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahjohnston/Taulia/issues"
+  },
+  "homepage": "https://github.com/ahjohnston/Taulia#readme",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "express": "^4.17.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "nodemon": "^2.0.15",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
+  }
+}
