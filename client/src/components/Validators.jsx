@@ -13,11 +13,18 @@ class Validators extends React.Component {
     const { testInfo } = this.props;
     var mapTests = testInfo.map((test) => {
       if (!test.testBool) {
-        return <div key={test.testName}>{test.testName}</div>
+        return <div className="row test" key={test.testName}>
+        <div className="circle"></div>
+        {test.testName}</div>
       }
-      return <Strike key={test.testName}>{test.testName}</Strike>
+      return <Strike className="row test" key={test.testName}>
+      <div className="circle"></div>{test.testName}</Strike>
     })
-    return <div>{mapTests}</div>
+    return (
+      <div id="tests" className="row">
+        {mapTests}
+      </div>
+    )
   }
 }
 

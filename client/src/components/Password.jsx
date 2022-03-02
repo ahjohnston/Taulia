@@ -1,6 +1,6 @@
 import React from 'react';
 import Validators from './Validators.jsx';
-import { getEmail } from './functions.js';
+import exports from './functions.js';
 import axios from 'axios';
 
 class Password extends React.Component {
@@ -11,23 +11,21 @@ class Password extends React.Component {
       showPassword: 'password',
       testInfo: [
         { testName: "8-72 Characters", testBool: false },
-        { testName: "1 Lowercase Character", testBool: false },
-        { testName: "Should Not Match Email Address", testBool: false },
         { testName: "1 Uppercase Character", testBool: false },
-        { testName: "1 Number", testBool: false }
+        { testName: "1 Lowercase Character", testBool: false },
+        { testName: "1 Number", testBool: false },
+        { testName: "Should Not Match Email Address", testBool: false }
       ]
     }
     this.toggleView = this.toggleView.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
   }
   componentDidMount() {
-    axios('https://run.mocky.io/v3/09e642b5-b52f-43c1-837b-8ebf70c10813')
+    // axios('https://run.mocky.io/v3/09e642b5-b52f-43c1-837b-8ebf70c10813')
+    exports.getEmail()
       .then((data) => {
-        const userEmail = data.data.user.email
-        const userName = userEmail.split('@')[0]
         this.setState({
-          userEmail: userEmail,
-          userName: userName
+          userName: data.data.user.email.split('@')[0]
         })
       })
   }
@@ -67,10 +65,10 @@ class Password extends React.Component {
       password: e.target.value,
       testInfo: [
         { testName: "8-72 Characters", testBool: charCount },
-        { testName: "1 Lowercase Character", testBool: lowercase },
-        { testName: "Should Not Match Email Address", testBool: email },
         { testName: "1 Uppercase Character", testBool: uppercase },
-        { testName: "1 Number", testBool: number }
+        { testName: "1 Lowercase Character", testBool: lowercase },
+        { testName: "1 Number", testBool: number },
+        { testName: "Should Not Match Email Address", testBool: email }
       ]
     })
 
@@ -80,10 +78,14 @@ class Password extends React.Component {
 
     return (
       <div>
-        <h4>Password:</h4>
-        <input type={showPassword} placeholder="enter your password here" onChange={this.updatePassword} value={password}></input>
-        <input type="checkbox" onChange={this.toggleView}></input>
-        Show
+        Password
+        <form>
+          <input id="password" type={showPassword} placeholder="enter your password here" onChange={this.updatePassword} value={password}></input>
+          <div id="show" className="row">
+            <input id="checkbox"  type="checkbox" onChange={this.toggleView}></input>
+            <label for="checkbox">Show</label>
+          </div>
+        </form>
         <Validators testInfo={testInfo} />
       </div >
     )
@@ -91,5 +93,3 @@ class Password extends React.Component {
 }
 
 export default Password;
-
-//tests update immediately
